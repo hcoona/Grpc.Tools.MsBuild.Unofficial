@@ -12,10 +12,10 @@ matrix:
       mono: none
     - os: linux
       mono: latest
-      env: MONO_BUILD
+      env: MONO_BUILD=1
     - os: osx
       mono: latest
-      env: MONO_BUILD
+      env: MONO_BUILD=1
 
 git:
   depth: 3
