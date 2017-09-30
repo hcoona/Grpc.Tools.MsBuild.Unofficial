@@ -20,6 +20,7 @@ matrix:
       mono: latest
 
 install:
+  - git fetch --unshallow
   - git submodule update --init
   - dotnet restore
 
