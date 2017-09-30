@@ -47,9 +47,9 @@ You are able to override default behaviors by assign Property in your project fi
 
 ## Todo ##
 
-1. Run manual test for baseline
-1. Run manual test for intellisense
-1. Prepare test project
+1. Run manual test for baseline **DONE**
+1. Run manual test for intellisense **DONE**
+1. Prepare test project **DONE**
 1. Add CI for testing on Windows & Linux
 1. Merge into Grpc repository
 
