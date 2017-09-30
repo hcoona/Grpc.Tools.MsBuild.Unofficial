@@ -2,22 +2,20 @@ language: csharp
 
 solution: Grpc.Tools.MsBuild.sln
 
-sudo: false
+sudo: required
 
 matrix:
   include:
     - os: linux
-      dotnet: 1.0.3
       mono: none
     - os: osx
-      dotnet: 1.0.3
       mono: none
     - os: linux
-      dotnet: 1.0.3
       mono: latest
+      env: MONO_BUILD
     - os: osx
-      dotnet: 1.0.3
       mono: latest
+      env: MONO_BUILD
 
 git:
   depth: 3
@@ -26,7 +24,7 @@ git:
 install:
   - git fetch --unshallow
   - git submodule update --init
-  - dotnet restore
 
 script:
-  - msbuild Grpc.Tools.MsBuild.sln
+  - chmod +x ./build.sh
+  - ./build.sh
