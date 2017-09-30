@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net46;netstandard1.5</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.5</TargetFrameworks>
+    <TargetFrameworks Condition="'$(MONO_BUILD)' != ''">net46</TargetFrameworks>
     <!-- Suppresses the warnings about the package not having assemblies in lib/*/.dll.-->
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <BuildOutputTargetFolder>tasks</BuildOutputTargetFolder>

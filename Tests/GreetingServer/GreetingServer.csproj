@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net462;netcoreapp1.1</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netcoreapp1.1</TargetFrameworks>
+    <TargetFrameworks Condition="'$(MONO_BUILD)' != ''">net462</TargetFrameworks>
   </PropertyGroup>
 
   <Import Project="../version.props" />
