@@ -9,11 +9,13 @@ matrix:
     - os: linux
       mono: none
     - os: osx
+      osx_image: xcode9
       mono: none
     - os: linux
       mono: latest
       env: MONO_BUILD=1
     - os: osx
+      osx_image: xcode9
       mono: latest
       env: MONO_BUILD=1
 
