@@ -35,8 +35,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- <Content Include="..\README.md" PackagePath="\" />
-    <Content Include="..\LICENSE.txt" PackagePath="\" /> -->
+    <Content Include="..\README.md" PackagePath="\" />
+    <Content Include="..\LICENSE.txt" PackagePath="\" />
     <Content Include="build\Grpc.Tools.MsBuild.Unofficial.props" PackagePath="build\" />
     <Content Include="build\Grpc.Tools.MsBuild.Unofficial.targets" PackagePath="build\" />
     <Content Include="buildMultiTargeting\Grpc.Tools.MsBuild.Unofficial.props" PackagePath="buildMultiTargeting\" />
