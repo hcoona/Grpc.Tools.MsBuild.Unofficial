@@ -21,7 +21,4 @@
     <_GrpcToolsMsBuildTaskAssembly>$(MSBuildThisFileDirectory)..\tasks\net46\Grpc.Tools.MsBuild.Core.dll</_GrpcToolsMsBuildTaskAssembly>
   </PropertyGroup>
 
-  <UsingTask TaskName="Grpc.Tools.MsBuild.Core.GetPlatformInfo"
-             AssemblyFile="$(_GrpcToolsMsBuildTaskAssembly)" />
-
 </Project>

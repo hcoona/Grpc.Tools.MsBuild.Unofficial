@@ -32,13 +32,13 @@
   <Target Name="GetGrpcOutputFiles">
     <PropertyGroup>
       <_GrpcOutputFolder>$([System.IO.Path]::Combine($(IntermediateOutputPath), _GrpcOutput))</_GrpcOutputFolder>
-      <_ProtoOuputFiles>@(ProtoFile -> '$(GrpcOutputFolder)\%(Filename).cs')</_ProtoOuputFiles>
-      <_GrpcOuputFiles>@(ProtoFile -> '$(GrpcOutputFolder)\%(Filename)Grpc.cs')</_GrpcOuputFiles>
+      <_ProtoOuputFiles>@(ProtoFile -> '$(_GrpcOutputFolder)\%(Filename).cs')</_ProtoOuputFiles>
+      <_GrpcOuputFiles>@(ProtoFile -> '$(_GrpcOutputFolder)\%(Filename)Grpc.cs')</_GrpcOuputFiles>
     </PropertyGroup>
   </Target>
 
-  <!--Inputs="@(ProtoFile)"
-          Outputs="$(ProtoOuputFiles);$(GrpcOuputFiles)"-->
+  <!--Inputs="@(NormalizedProtoFile)"
+          Outputs="$(_ProtoOuputFiles);$(_GrpcOuputFiles)"-->
   <Target Name="CoreGenerateGrpcFiles"
           BeforeTargets="CoreCompile"
           DependsOnTargets="GetGrpcToolsSubFolderName;GetGrpcOutputFiles"
@@ -53,8 +53,8 @@
     <MakeDir Directories="$(_GrpcOutputFolder)" />
     <Exec Command="$(GrpcProtocExec) $(GrpcAdditionalArguments) @(NormalizedProtoIncludeFolder -> '-I%(Identity)', ' ') --csharp_out=$(_GrpcOutputFolder) --grpc_out=$(_GrpcOutputFolder) @(NormalizedProtoFile -> '%(Identity)', ' ') --plugin=protoc-gen-grpc=$(GrpcCSharpPluginExec)" />
     <ItemGroup>
-      <Compile Include="$(ProtoOuputFiles);$(GrpcOuputFiles)" />
-      <FileWrites Include="$(ProtoOuputFiles);$(GrpcOuputFiles)" />
+      <Compile Include="$(_ProtoOuputFiles);$(_GrpcOuputFiles)" />
+      <FileWrites Include="$(_ProtoOuputFiles);$(_GrpcOuputFiles)" />
     </ItemGroup>
   </Target>
 
