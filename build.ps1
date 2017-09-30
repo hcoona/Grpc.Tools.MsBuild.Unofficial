@@ -13,3 +13,6 @@ dotnet build Grpc.Tools.MsBuild.Core\Grpc.Tools.MsBuild.Core.csproj
 
 dotnet restore Tests\GreetingClient\GreetingClient.csproj
 dotnet build Tests\GreetingClient\GreetingClient.csproj -v normal
+
+dotnet restore Tests\GreetingServer\GreetingServer.csproj
+dotnet build Tests\GreetingServer\GreetingServer.csproj -v normal

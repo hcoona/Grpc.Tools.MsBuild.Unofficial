@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProtoFile Include="..\..\external\grpc\examples\protos\helloworld.proto" />
-    <Compile Include="..\..\external\grpc\examples\csharp\helloworld\GreeterClient\Program.cs" />
+    <Compile Include="..\..\external\grpc\examples\csharp\helloworld\GreeterServer\Program.cs" />
   </ItemGroup>
 
 </Project>

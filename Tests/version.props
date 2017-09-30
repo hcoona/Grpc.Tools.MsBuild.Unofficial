@@ -1,0 +1,7 @@
+<Project>
+
+  <PropertyGroup>
+    <TestPackageVersion>1.0.6-*</TestPackageVersion>
+  </PropertyGroup>
+
+</Project>
