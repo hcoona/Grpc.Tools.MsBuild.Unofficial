@@ -1,4 +1,4 @@
-﻿#region Copyright notice and license
+#region Copyright notice and license
 
 // Copyright 2017 Shuai Zhang.
 //
@@ -22,13 +22,14 @@ using Microsoft.Build.Framework;
 
 namespace Grpc.Tools.MsBuild.Core
 {
-    public class GetGrpcToolsSubFolderName : Microsoft.Build.Utilities.Task
+    public class GetPlatformInfo : Microsoft.Build.Utilities.Task
     {
         public override bool Execute()
         {
             try
             {
-                GrpcToolsSubFolderName = GetOsPrefix() + "_" + (PlatformApis.Is64Bit ? "x64" : "x86");
+                OSName = GetOsName();
+                Platform = (PlatformApis.Is64Bit ? "x64" : "x86");
                 return true;
             }
             catch (Exception ex)
@@ -38,7 +39,7 @@ namespace Grpc.Tools.MsBuild.Core
             }
         }
 
-        private string GetOsPrefix()
+        private string GetOsName()
         {
             if (PlatformApis.IsWindows) return "windows";
             if (PlatformApis.IsLinux) return "linux";
@@ -48,6 +49,9 @@ namespace Grpc.Tools.MsBuild.Core
         }
 
         [Output]
-        public string GrpcToolsSubFolderName { get; private set; }
+        public string OSName { get; private set; }
+
+        [Output]
+        public string Platform { get; private set; }
     }
 }

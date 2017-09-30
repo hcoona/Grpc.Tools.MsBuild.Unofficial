@@ -3,9 +3,9 @@
 
   <PropertyGroup>
     <GrpcToolsVersion Condition="'$(GrpcToolsVersion)' == ''">1.6.1</GrpcToolsVersion>
-    <GrpcToolsPath Condition="'$(GrpcToolsPath)' == ''">$(UserProfile)\.nuget\packages\grpc.tools\$(GrpcToolsVersion)\tools\</GrpcToolsPath>
-    <GrpcCSharpPluginExecName Condition="'$(GrpcCSharpPluginExecName)' == ''">grpc_csharp_plugin.exe</GrpcCSharpPluginExecName>
-    <GrpcProtocExecName Condition="'$(GrpcProtocExecName)' == ''">protoc.exe</GrpcProtocExecName>
+    <GrpcToolsPath Condition="'$(GrpcToolsPath)' == ''">$(MSBuildThisFileDirectory)..\..\..\grpc.tools\$(GrpcToolsVersion)\tools\</GrpcToolsPath>
+    <GrpcCSharpPluginExecName Condition="'$(GrpcCSharpPluginExecName)' == ''">grpc_csharp_plugin</GrpcCSharpPluginExecName>
+    <GrpcProtocExecName Condition="'$(GrpcProtocExecName)' == ''">protoc</GrpcProtocExecName>
     <GrpcIncludeFolders Condition="'$(GrpcIncludeFolders)' == ''">$(MSBuildProjectDirectory)</GrpcIncludeFolders>
     <AutoDiscoverProjectProtocFiles Condition="'$(AutoDiscoverProjectProtocFiles)' == ''">true</AutoDiscoverProjectProtocFiles>
     <GrpcCSharpPluginExec Condition="'$(GrpcCSharpPluginExec)' == ''"></GrpcCSharpPluginExec>
@@ -21,7 +21,7 @@
     <_GrpcToolsMsBuildTaskAssembly>$(MSBuildThisFileDirectory)..\tasks\net46\Grpc.Tools.MsBuild.Core.dll</_GrpcToolsMsBuildTaskAssembly>
   </PropertyGroup>
 
-  <UsingTask TaskName="Grpc.Tools.MsBuild.Core.GetGrpcToolsSubFolderName"
+  <UsingTask TaskName="Grpc.Tools.MsBuild.Core.GetPlatformInfo"
              AssemblyFile="$(_GrpcToolsMsBuildTaskAssembly)" />
 
 </Project>
