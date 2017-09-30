@@ -52,8 +52,13 @@
     <MakeDir Directories="$(_GrpcOutputFolder)" />
     <Exec Command="$(GrpcProtocExec) $(GrpcAdditionalArguments) @(NormalizedProtoIncludeFolder -> '-I%(Identity)', ' ') --csharp_out=$(_GrpcOutputFolder) --grpc_out=$(_GrpcOutputFolder) @(NormalizedProtoFile -> '%(Identity)', ' ') --plugin=protoc-gen-grpc=$(GrpcCSharpPluginExec)" />
     <ItemGroup>
+      <!-- Workaround for case sensitive issue -->
+      <Compile Include="$(_GrpcOuputFiles)\*.cs" />
+      <FileWrites Include="$(_GrpcOuputFiles)\*.cs" />
+      <!--
       <Compile Include="$(_ProtoOuputFiles);$(_GrpcOuputFiles)" />
       <FileWrites Include="$(_ProtoOuputFiles);$(_GrpcOuputFiles)" />
+      -->
     </ItemGroup>
   </Target>
 
