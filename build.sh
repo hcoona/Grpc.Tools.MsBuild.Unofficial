@@ -1,9 +1,10 @@
 #! /usr/bin/env bash
 
 if [ "$(uname)" == "Darwin" ]; then
-    curl -o dotnet-sdk-2.0.0-osx-gs-x64.pkg -k https://download.microsoft.com/download/0/F/D/0FD852A4-7EA1-4E2A-983A-0484AC19B92C/dotnet-sdk-2.0.0-osx-gs-x64.pkg
-    sudo installer -pkg dotnet-sdk-2.0.0-osx-gs-x64.pkg -target $PWD
-    export PATH=$PATH:$PWD/usr/local/share/dotnet/
+    curl -o dotnet-install.sh -k https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.sh
+    chmod +x dotnet-install.sh
+    dotnet-install.sh --version 2.0.0
+    export PATH=$PATH:$HOME/.dotnet
 else
     curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
     sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
