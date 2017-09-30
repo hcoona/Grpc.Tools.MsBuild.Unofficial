@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C14BC0A1-6E7C-4037-9AD7-91EE628372A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreetingClient", "Tests\GreetingClient\GreetingClient.csproj", "{5BBA70E4-59CC-4CD5-8571-985D81BF0EE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,9 +26,16 @@ Global
 		{F2DE2F08-F692-4C97-94EC-6AB9CC9BB24F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2DE2F08-F692-4C97-94EC-6AB9CC9BB24F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2DE2F08-F692-4C97-94EC-6AB9CC9BB24F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BBA70E4-59CC-4CD5-8571-985D81BF0EE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BBA70E4-59CC-4CD5-8571-985D81BF0EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BBA70E4-59CC-4CD5-8571-985D81BF0EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BBA70E4-59CC-4CD5-8571-985D81BF0EE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5BBA70E4-59CC-4CD5-8571-985D81BF0EE2} = {C14BC0A1-6E7C-4037-9AD7-91EE628372A7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10EB4250-3333-4F8E-ACD5-586D08F66AEA}

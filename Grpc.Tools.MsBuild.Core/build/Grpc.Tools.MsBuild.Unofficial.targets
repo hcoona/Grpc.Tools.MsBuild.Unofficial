@@ -23,17 +23,15 @@
           Outputs="$(ProtoOuputFiles);$(GrpcOuputFiles)"-->
   <Target Name="CoreGenerateGrpcFiles"
           BeforeTargets="CoreCompile"
-          DependsOnTargets="GetGrpcToolsSubFolderName;GetGrpcOutputFiles">
+          DependsOnTargets="GetGrpcToolsSubFolderName;GetGrpcOutputFiles"
+          Condition="'@(ProtoFile)' != ''">
     <PropertyGroup>
-      <GrpcCSharpPluginExec Condition="'$(GrpcCSharpPluginExec)' == ''">
-        $([System.IO.Path]::Combine($(GrpcToolsPath), $(_GrpcToolsSubFolderName), $(GrpcCSharpPluginExecName)))
-      </GrpcCSharpPluginExec>
-      <GrpcProtocExec Condition="'$(GrpcProtocExec)' == ''">
-        $([System.IO.Path]::Combine($(GrpcToolsPath), $(_GrpcToolsSubFolderName), $(GrpcProtocExecName)))
-      </GrpcProtocExec>
+      <GrpcCSharpPluginExec Condition="'$(GrpcCSharpPluginExec)' == ''">$([System.IO.Path]::Combine($(GrpcToolsPath), $(_GrpcToolsSubFolderName), $(GrpcCSharpPluginExecName)))</GrpcCSharpPluginExec>
+      <GrpcProtocExec Condition="'$(GrpcProtocExec)' == ''">$([System.IO.Path]::Combine($(GrpcToolsPath), $(_GrpcToolsSubFolderName), $(GrpcProtocExecName)))</GrpcProtocExec>
     </PropertyGroup>
+    <Message Text="In CoreGenerateGrpcFiles" Importance="High" />
     <MakeDir Directories="$(_GrpcOutputFolder)" />
-    <Exec Command="$(GrpcProtocExec) $(GrpcAdditionalArguments) @(GrpcIncludeFolders -> '-I%(Identity)', ' ') --csharp_out $(_GrpcOutputFolder) --grpc_out $(_GrpcOutputFolder) @(ProtoFile -> '%(Identity)', ' ') --plugin=protoc-gen-grpc=$(GrpcCSharpPluginExec)" />
+    <Exec Command="$(GrpcProtocExec) $(GrpcAdditionalArguments) @(GrpcIncludeFolders -> '-I%(Identity)', ' ') --csharp_out=$(_GrpcOutputFolder) --grpc_out=$(_GrpcOutputFolder) @(ProtoFile -> '%(Identity)', ' ') --plugin=protoc-gen-grpc=$(GrpcCSharpPluginExec)" />
     <ItemGroup>
       <Compile Include="$(ProtoOuputFiles);$(GrpcOuputFiles)" />
       <Touch Include="$(ProtoOuputFiles);$(GrpcOuputFiles)" />

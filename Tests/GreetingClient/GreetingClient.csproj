@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net462</TargetFramework>
+    <!--<TargetFramework>netcoreapp2.0</TargetFramework>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.Tools.MsBuild.Unofficial" Version="1.0.2-*" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>
