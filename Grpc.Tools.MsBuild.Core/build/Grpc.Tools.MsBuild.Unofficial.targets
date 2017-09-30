@@ -5,6 +5,13 @@
     <ProtoFile Include="**\*.proto" />
   </ItemGroup>
 
+  <ItemGroup>
+    <NormalizedProtoFile Include="@(ProtoFile -> '%(fullpath)')" />
+    <ProtoIncludeFolder Include="@(NormalizedProtoFile -> '%(rootdir)%(directory)')" />
+    <ProtoIncludeFolder Include="$(ProtoIncludeFolder)" />
+    <NormalizedProtoIncludeFolder Include="@(ProtoIncludeFolder -> Distinct())" />
+  </ItemGroup>
+
   <Target Name="GetGrpcToolsSubFolderName">
     <GetPlatformInfo>
       <Output TaskParameter="OSName" PropertyName="_OSName" />
@@ -34,7 +41,7 @@
       <GrpcProtocExec Condition="'$(GrpcProtocExec)' == ''">$([System.IO.Path]::Combine($(GrpcToolsPath), $(_GrpcToolsSubFolderName), $(GrpcProtocExecName)))</GrpcProtocExec>
     </PropertyGroup>
     <MakeDir Directories="$(_GrpcOutputFolder)" />
-    <Exec Command="$(GrpcProtocExec) $(GrpcAdditionalArguments) @(GrpcIncludeFolders -> '-I%(Identity)', ' ') --csharp_out=$(_GrpcOutputFolder) --grpc_out=$(_GrpcOutputFolder) @(ProtoFile -> '%(Identity)', ' ') --plugin=protoc-gen-grpc=$(GrpcCSharpPluginExec)" />
+    <Exec Command="$(GrpcProtocExec) $(GrpcAdditionalArguments) @(NormalizedProtoIncludeFolder -> '-I%(Identity)', ' ') --csharp_out=$(_GrpcOutputFolder) --grpc_out=$(_GrpcOutputFolder) @(NormalizedProtoFile -> '%(Identity)', ' ') --plugin=protoc-gen-grpc=$(GrpcCSharpPluginExec)" />
     <ItemGroup>
       <Compile Include="$(ProtoOuputFiles);$(GrpcOuputFiles)" />
       <Touch Include="$(ProtoOuputFiles);$(GrpcOuputFiles)" />
