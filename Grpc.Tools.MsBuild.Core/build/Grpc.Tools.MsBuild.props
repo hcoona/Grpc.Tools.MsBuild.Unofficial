@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+  <PropertyGroup>
+    <GrpcToolsVersion Condition="'$(GrpcToolsVersion)' == ''">1.6.1</GrpcToolsVersion>
+    <GrpcToolsPath Condition="'$(GrpcToolsPath)' == ''">$(UserProfile)\.nuget\packages\grpc.tools\$(GrpcToolsVersion)\tools\</GrpcToolsPath>
+    <GrpcCSharpPluginExecName Condition="'$(GrpcCSharpPluginExecName)' == ''">grpc_csharp_plugin</GrpcCSharpPluginExecName>
+    <GrpcProtocExecName Condition="'$(GrpcProtocExecName)' == ''">protoc</GrpcProtocExecName>
+    <GrpcIncludeFolders Condition="'$(GrpcIncludeFolders)' == ''">.</GrpcIncludeFolders>
+    <AutoDiscoverProjectProtocFiles Condition="'$(AutoDiscoverProjectProtocFiles)' == ''">true</AutoDiscoverProjectProtocFiles>
+    <GrpcCSharpPluginExec Condition="'$(GrpcCSharpPluginExec)' == ''"></GrpcCSharpPluginExec>
+    <GrpcProtocExec Condition="'$(GrpcProtocExec)' == ''"></GrpcProtocExec>
+    <GrpcAdditionalArguments Condition="'$(GrpcAdditionalArguments)' == ''"></GrpcAdditionalArguments>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(MSBuildRuntimeType)' == 'Core'">
+    <_GrpcToolsMsBuildTaskAssembly>$(MSBuildThisFileDirectory)..\tasks\netstandard1.5\Grpc.Tools.MsBuild.Core.dll</_GrpcToolsMsBuildTaskAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(MSBuildRuntimeType)' != 'Core'">
+    <_GrpcToolsMsBuildTaskAssembly>$(MSBuildThisFileDirectory)..\tasks\net46\Grpc.Tools.MsBuild.Core.dll</_GrpcToolsMsBuildTaskAssembly>
+  </PropertyGroup>
+
+  <UsingTask TaskName="Grpc.Tools.MsBuild.Core.GetGrpcToolsSubFolderName"
+             AssemblyFile="$(_GrpcToolsMsBuildTaskAssembly)" />
+
+</Project>

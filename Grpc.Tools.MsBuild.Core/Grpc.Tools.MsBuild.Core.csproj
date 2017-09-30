@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net46;netstandard1.5</TargetFrameworks>
+    <!-- Suppresses the warnings about the package not having assemblies in lib/*/.dll.-->
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <BuildOutputTargetFolder>tasks</BuildOutputTargetFolder>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>Shuai Zhang</Authors>
+    <Company>Shuai Zhang</Company>
+    <Description>This is a package to run Grpc tools automatically when msbuild building.</Description>
+    <Copyright>Apache 2.0</Copyright>
+    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageId>Grpc.Tools.MsBuild.Unofficial</PackageId>
+    <PackageTags>grpc protobuf msbuild</PackageTags>
+    <PackageProjectUrl>https://github.com/hcoona/Grpc.Tools.MsBuild.Unofficial</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/hcoona/Grpc.Tools.MsBuild.Unofficial.git</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.Tools" Version="1.6.1" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.3.409" PrivateAssets="All" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="2.0.41" PrivateAssets="All" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="..\external\grpc\src\csharp\Grpc.Core\Internal\PlatformApis.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="build\Grpc.Tools.MsBuild.props" PackagePath="build\" />
+    <Content Include="build\Grpc.Tools.MsBuild.targets" PackagePath="build\" />
+    <Content Include="buildMultiTargeting\Grpc.Tools.MsBuild.props" PackagePath="buildMultiTargeting\" />
+    <Content Include="buildMultiTargeting\Grpc.Tools.MsBuild.targets" PackagePath="buildMultiTargeting\" />
+    <Content Include="..\README.md" PackagePath="\" />
+    <Content Include="..\LICENSE.txt" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

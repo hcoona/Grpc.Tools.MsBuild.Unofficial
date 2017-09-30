@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+  <ItemGroup Condition="'$(AutoDiscoverProjectProtocFiles)' == 'true'">
+    <ProtoFile Include="**\*.proto" />
+  </ItemGroup>
+
+  <Target Name="GetGrpcToolsSubFolderName">
+    <GetGrpcToolsSubFolderName>
+      <Output TaskParameter="GrpcToolsSubFolderName" PropertyName="_GrpcToolsSubFolderName" />
+    </GetGrpcToolsSubFolderName>
+  </Target>
+
+  <Target Name="GetGrpcOutputFiles">
+    <PropertyGroup>
+      <_GrpcOutputFolder>$([System.IO.Path]::Combine($(IntermediateOutputPath), _GrpcOutput))</_GrpcOutputFolder>
+      <_ProtoOuputFiles>@(ProtoFile -> '$(GrpcOutputFolder)\%(Filename).cs')</_ProtoOuputFiles>
+      <_GrpcOuputFiles>@(ProtoFile -> '$(GrpcOutputFolder)\%(Filename)Grpc.cs')</_GrpcOuputFiles>
+    </PropertyGroup>
+  </Target>
+
+  <!--Inputs="@(ProtoFile)"
+          Outputs="$(ProtoOuputFiles);$(GrpcOuputFiles)"-->
+  <Target Name="CoreGenerateGrpcFiles"
+          BeforeTargets="CoreCompile"
+          DependsOnTargets="GetGrpcToolsSubFolderName;GetGrpcOutputFiles">
+    <PropertyGroup>
+      <GrpcCSharpPluginExec Condition="'$(GrpcCSharpPluginExec)' == ''">
+        $([System.IO.Path]::Combine($(GrpcToolsPath), $(_GrpcToolsSubFolderName), $(GrpcCSharpPluginExecName)))
+      </GrpcCSharpPluginExec>
+      <GrpcProtocExec Condition="'$(GrpcProtocExec)' == ''">
+        $([System.IO.Path]::Combine($(GrpcToolsPath), $(_GrpcToolsSubFolderName), $(GrpcProtocExecName)))
+      </GrpcProtocExec>
+    </PropertyGroup>
+    <MakeDir Directories="$(_GrpcOutputFolder)" />
+    <Exec Command="$(GrpcProtocExec) $(GrpcAdditionalArguments) @(GrpcIncludeFolders -> '-I%(Identity)', ' ') --csharp_out $(_GrpcOutputFolder) --grpc_out $(_GrpcOutputFolder) @(ProtoFile -> '%(Identity)', ' ') --plugin=protoc-gen-grpc=$(GrpcCSharpPluginExec)" />
+    <ItemGroup>
+      <Compile Include="$(ProtoOuputFiles);$(GrpcOuputFiles)" />
+      <Touch Include="$(ProtoOuputFiles);$(GrpcOuputFiles)" />
+    </ItemGroup>
+  </Target>
+
+</Project>
