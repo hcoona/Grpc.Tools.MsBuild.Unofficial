@@ -21,9 +21,11 @@ matrix:
 
 git:
   depth: 3
+  submodules: false
 
 install:
   - git fetch --unshallow
+  - git submodule update --init
   - dotnet restore
 
 script:
