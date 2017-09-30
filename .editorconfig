@@ -23,3 +23,6 @@ end_of_line = lf
 
 [LICENSE.txt]
 end_of_line = lf
+
+[appveyor.yml]
+indent_size = 2

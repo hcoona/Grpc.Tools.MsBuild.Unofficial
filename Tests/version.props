@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <TestPackageVersion>1.0.8-*</TestPackageVersion>
+    <TestPackageVersion>1.0.9-*</TestPackageVersion>
   </PropertyGroup>
 
 </Project>

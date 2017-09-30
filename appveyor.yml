@@ -1,0 +1,15 @@
+image: Visual Studio 2017
+
+configuration: Release
+
+before_build:
+  - dotnet restore
+
+build:
+  parallel: false
+  project: Grpc.Tools.MsBuild.sln
+  publish_nuget: false
+
+artifacts:
+  - path: '**\*.nupkg'
+    name: NuGet Package
