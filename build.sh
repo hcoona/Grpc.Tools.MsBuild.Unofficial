@@ -19,6 +19,6 @@ if [ -z ${MONO_BUILD+x} ]; then
 else
     # Build with Mono
     curl -o nuget.exe -k https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-    mono nuget.exe restore -ConfigFile ./Test/NuGet.config -NonInteractive
+    mono nuget.exe restore -NonInteractive
     msbuild
 fi
