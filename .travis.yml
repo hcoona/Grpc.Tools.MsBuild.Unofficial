@@ -19,9 +19,11 @@ matrix:
       dotnet: 1.0.3
       mono: latest
 
+git:
+  depth: 3
+
 install:
   - git fetch --unshallow
-  - git submodule update --init
   - dotnet restore
 
 script:
