@@ -37,12 +37,11 @@
     </PropertyGroup>
   </Target>
 
-  <!--Inputs="@(NormalizedProtoFile)"
-          Outputs="$(_ProtoOuputFiles);$(_GrpcOuputFiles)"-->
   <Target Name="CoreGenerateGrpcFiles"
           BeforeTargets="CoreCompile"
           DependsOnTargets="GetGrpcToolsSubFolderName;GetGrpcOutputFiles"
-          Condition="'@(ProtoFile)' != ''">
+          Inputs="@(NormalizedProtoFile)"
+          Outputs="$(_ProtoOuputFiles);$(_GrpcOuputFiles)">
     <PropertyGroup>
       <_GrpcToolsSubFolderName>$(_OSName)_$(_Platform)</_GrpcToolsSubFolderName>
       <GrpcCSharpPluginExecName Condition="'$(_OSName)' == 'windows'">$([System.IO.Path]::ChangeExtension('$(GrpcCSharpPluginExecName)', exe))</GrpcCSharpPluginExecName>
