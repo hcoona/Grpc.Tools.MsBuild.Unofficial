@@ -26,3 +26,7 @@ end_of_line = lf
 
 [appveyor.yml]
 indent_size = 2
+
+[.travis.yml]
+indent_size = 2
+end_of_line = lf
