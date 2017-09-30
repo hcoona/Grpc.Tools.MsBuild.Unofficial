@@ -2,13 +2,11 @@ image: Visual Studio 2017
 
 configuration: Release
 
-before_build:
-  - dotnet restore
+install:
+  - git submodule update --init
 
-build:
-  parallel: false
-  project: Grpc.Tools.MsBuild.sln
-  publish_nuget: false
+build_script:
+  - ps: ./build.ps1
 
 artifacts:
   - path: '**\*.nupkg'
