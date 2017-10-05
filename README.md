@@ -51,6 +51,7 @@ You are able to override default behaviors by assign Property in your project fi
 1. Run manual test for intellisense **DONE**
 1. Prepare test project **DONE**
 1. Add CI for testing on Windows & Linux **DONE**
+1. Bugfix & stabilize
 1. Merge into Grpc repository
 
 ## License ##

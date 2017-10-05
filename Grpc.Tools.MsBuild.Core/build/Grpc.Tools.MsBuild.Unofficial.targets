@@ -3,7 +3,7 @@
 
   <PropertyGroup>
     <CoreCompileDependsOn>
-      CoreGenerateGrpcFiles;
+      GenerateGrpcFiles;
       $(CoreCompileDependsOn)
     </CoreCompileDependsOn>
   </PropertyGroup>
@@ -38,7 +38,6 @@
   </Target>
 
   <Target Name="CoreGenerateGrpcFiles"
-          BeforeTargets="CoreCompile"
           DependsOnTargets="GetGrpcToolsSubFolderName;GetGrpcOutputFiles"
           Inputs="@(NormalizedProtoFile)"
           Outputs="$(_ProtoOuputFiles);$(_GrpcOuputFiles)">
@@ -51,6 +50,11 @@
     </PropertyGroup>
     <MakeDir Directories="$(_GrpcOutputFolder)" />
     <Exec Command="$(GrpcProtocExec) $(GrpcAdditionalArguments) @(NormalizedProtoIncludeFolder -> '-I%(Identity)', ' ') --csharp_out=$(_GrpcOutputFolder) --grpc_out=$(_GrpcOutputFolder) @(NormalizedProtoFile -> '%(Identity)', ' ') --plugin=protoc-gen-grpc=$(GrpcCSharpPluginExec)" />
+  </Target>
+
+  <Target Name="GenerateGrpcFiles"
+          BeforeTargets="CoreCompile"
+          DependsOnTargets="GetGrpcOutputFiles;CoreGenerateGrpcFiles">
     <ItemGroup>
       <!-- Workaround for case sensitive issue -->
       <Compile Include="$(_GrpcOutputFolder)\*.cs" />
