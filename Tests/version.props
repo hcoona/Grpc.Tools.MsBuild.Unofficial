@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <TestPackageVersion>1.0.31-beta.gb297fa3ba2</TestPackageVersion>
+    <TestPackageVersion>1.0.42-beta</TestPackageVersion>
   </PropertyGroup>
 
 </Project>
