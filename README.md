@@ -3,6 +3,25 @@
 This package helps MSBuild run Grpc tools generate CSharp codes from proto files &
 integrate them into building automatically.
 
+<table>
+  <thead>
+    <tr>
+      <th>Build System</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AppVeyor</td>
+      <td><a href="https://ci.appveyor.com/project/hcoona/grpc-tools-msbuild-unofficial"><img alt="AppVeyor build status" src="https://ci.appveyor.com/api/projects/status/38w0tlaa5l0xm607?svg=true" /></a></td>
+    </tr>
+    <tr>
+      <td>Travis CI</td>
+      <td><a href="https://travis-ci.org/hcoona/Grpc.Tools.MsBuild.Unofficial"><img alt="Travis CI build status" src="https://api.travis-ci.org/hcoona/Grpc.Tools.MsBuild.Unofficial.svg" /></a></td>
+    </tr>
+  </tbody>
+</table>
+
 ## Getting Started ##
 
 ### Install ###

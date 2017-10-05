@@ -33,3 +33,6 @@ end_of_line = lf
 
 [build.sh]
 end_of_line = lf
+
+[README.md]
+indent_size = 2
