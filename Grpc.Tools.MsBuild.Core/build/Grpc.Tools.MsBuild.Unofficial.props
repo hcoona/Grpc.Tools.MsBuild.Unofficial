@@ -3,7 +3,7 @@
 
   <PropertyGroup>
     <GrpcToolsVersion Condition="'$(GrpcToolsVersion)' == ''">1.6.1</GrpcToolsVersion>
-    <GrpcToolsPath Condition="'$(GrpcToolsPath)' == ''">$(MSBuildThisFileDirectory)..\..\..\grpc.tools\$(GrpcToolsVersion)\tools\</GrpcToolsPath>
+    <GrpcToolsPath Condition="'$(GrpcToolsPath)' == ''">$(MSBuildThisFileDirectory)..\..\grpc.tools.$(GrpcToolsVersion)\tools\</GrpcToolsPath>
     <GrpcCSharpPluginExecName Condition="'$(GrpcCSharpPluginExecName)' == ''">grpc_csharp_plugin</GrpcCSharpPluginExecName>
     <GrpcProtocExecName Condition="'$(GrpcProtocExecName)' == ''">protoc</GrpcProtocExecName>
     <GrpcIncludeFolders Condition="'$(GrpcIncludeFolders)' == ''">$(MSBuildProjectDirectory)</GrpcIncludeFolders>
