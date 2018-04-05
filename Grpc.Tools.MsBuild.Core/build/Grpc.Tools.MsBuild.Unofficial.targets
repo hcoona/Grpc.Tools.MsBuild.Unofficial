@@ -4,6 +4,7 @@
   <PropertyGroup>
     <CoreCompileDependsOn>
       GenerateGrpcFiles;
+	  CopyGrpcFiles;
       $(CoreCompileDependsOn)
     </CoreCompileDependsOn>
   </PropertyGroup>
@@ -65,6 +66,24 @@
       <FileWrites Include="$(_ProtoOuputFiles);$(_GrpcOuputFiles)" />
       -->
     </ItemGroup>
+  </Target>
+  
+  <Target Name="CopyGrpcFiles"
+          DependsOnTargets="GenerateGrpcFiles"
+		  Condition="'@(GrpcOutputFolderCopy)' != ''">
+
+    <ItemGroup>
+      <GeneratedFile Include="$(_GrpcOutputFolder)\*.cs" />
+    </ItemGroup>
+
+    <MakeDir Directories="%(GrpcOutputFolderCopy.Identity)" />
+    <Copy SourceFiles="@(GeneratedFile)" DestinationFolder ="%(GrpcOutputFolderCopy.Identity)" />
+  </Target>
+
+  <Target Name="DeleteGrpcFiles" 
+          DependsOnTargets="GetGrpcOutputFiles"
+          AfterTargets="Clean">
+	  <RemoveDir Directories="%(GrpcOutputFolderCopy.Identity);$(_GrpcOutputFolder)" />
   </Target>
 
 </Project>

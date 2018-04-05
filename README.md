@@ -64,6 +64,8 @@ Here is a list of the configuration properties and their default values. You can
 * GrpcProtocExec: null
 * GrpcAdditionalArguments: null
 
+Additionally, you can specify multiple folders where the generated output should be copied to by setting the GrpcOutputFolderCopy property. This is useful for example when you have the proto files in the server project and the gRPC output needs to be copied to the client project after the generation.
+
 Example csproj file:
 
 ```xml:
@@ -74,6 +76,12 @@ Example csproj file:
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <GrpcToolsVersion>1.10.0</GrpcToolsVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <GrpcOutputFolderCopy Include="../folder1" />
+    <GrpcOutputFolderCopy Include="../folder2" />
+    <GrpcOutputFolderCopy Include="../folder3" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.5.1" />
@@ -92,6 +100,12 @@ Example Directory.Build.props:
   <PropertyGroup>
     <GrpcToolsVersion>1.10.0</GrpcToolsVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <GrpcOutputFolderCopy Include="../folder1" />
+    <GrpcOutputFolderCopy Include="../folder2" />
+    <GrpcOutputFolderCopy Include="../folder3" />
+  </ItemGroup>
 </Project>
 ```
 
