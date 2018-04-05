@@ -52,7 +52,7 @@ You might also need to add more folders for Grpc includes:
 
 ### Overrides ###
 
-You are able to override default behaviors by assign Property in your project file.
+Here is a list of the configuration properties and their default values. You can override them by setting them in your csproj file or, if you prefer to leave the project file untouched, in a Directory.Build.props file that can be added to the project folder.
 
 * GrpcToolsVersion: 1.6.1
 * GrpcToolsPath: $(UserProfile)\.nuget\packages\grpc.tools\$(GrpcToolsVersion)\tools\
@@ -63,6 +63,37 @@ You are able to override default behaviors by assign Property in your project fi
 * GrpcCSharpPluginExec: null
 * GrpcProtocExec: null
 * GrpcAdditionalArguments: null
+
+Example csproj file:
+
+```xml:
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GrpcToolsVersion>1.10.0</GrpcToolsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.5.1" />
+    <PackageReference Include="Grpc" Version="1.10.0" />
+    <PackageReference Include="Grpc.Tools" Version="1.10.0" />
+    <PackageReference Include="Grpc.Tools.MsBuild.Unofficial" Version="1.0.44" />
+  </ItemGroup>
+</Project>
+```
+
+Example Directory.Build.props:
+
+```xml:
+<?xml version="1.0" encoding="utf-8" ?>
+<Project>
+  <PropertyGroup>
+    <GrpcToolsVersion>1.10.0</GrpcToolsVersion>
+  </PropertyGroup>
+</Project>
+```
 
 ## Todo ##
 
