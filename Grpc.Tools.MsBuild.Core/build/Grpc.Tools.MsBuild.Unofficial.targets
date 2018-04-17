@@ -43,6 +43,7 @@
           Outputs="$(_ProtoOuputFiles);$(_GrpcOuputFiles)">
     <PropertyGroup>
       <_GrpcToolsSubFolderName>$(_OSName)_$(_Platform)</_GrpcToolsSubFolderName>
+      <GrpcToolsPath Condition="'$(GrpcToolsPath)' == ''">$(MSBuildThisFileDirectory)..\..\..\grpc.tools\$(GrpcToolsVersion)\tools\</GrpcToolsPath>
       <GrpcCSharpPluginExecName Condition="'$(_OSName)' == 'windows'">$([System.IO.Path]::ChangeExtension('$(GrpcCSharpPluginExecName)', exe))</GrpcCSharpPluginExecName>
       <GrpcProtocExecName Condition="'$(_OSName)' == 'windows'">$([System.IO.Path]::ChangeExtension('$(GrpcProtocExecName)', exe))</GrpcProtocExecName>
       <GrpcCSharpPluginExec Condition="'$(GrpcCSharpPluginExec)' == ''">$([System.IO.Path]::Combine($(GrpcToolsPath), $(_GrpcToolsSubFolderName), $(GrpcCSharpPluginExecName)))</GrpcCSharpPluginExec>
