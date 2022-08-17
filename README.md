@@ -3,6 +3,8 @@
 This package helps MSBuild run Grpc tools generate CSharp codes from proto files &
 integrate them into building automatically.
 
+** This project is deprecated because Grpc.Tools official support it. **
+
 <table>
   <thead>
     <tr>
